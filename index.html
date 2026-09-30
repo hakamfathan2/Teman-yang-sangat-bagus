@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FOURMINDS | Hakam, Fahmi, Razi & Fatih</title>
+
+    <meta name="description" content="FOURMINDS - Mengenal Hakam, Fahmi, Razi dan Fatih.">
+
+    <style>
+        /* ==============================
+           DASAR
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #020617;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        button,
+        a {
+            font-family: inherit;
+        }
+
+        /* ==============================
+           BACKGROUND
+        ============================== */
+
+        .background-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+            background-size: 50px 50px;
+        }
+
+        .light {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: .15;
+            z-index: -4;
+            pointer-events: none;
+            animation: floating 8s infinite alternate ease-in-out;
+        }
+
+        .light-1 {
+            background: #06b6d4;
+            top: -100px;
+            left: -100px;
+        }
+
+        .light-2 {
+            background: #6366f1;
+            top: 45%;
+            right: -120px;
+            animation-delay: 2s;
+        }
+
+        .light-3 {
+            background: #8b5cf6;
+            bottom: -150px;
+            left: 40%;
+            animation-delay: 4s;
+        }
+
+        @keyframes floating {
+            from {
+                transform: translateY(0) scale(1);
+            }
+
+            to {
+                transform: translateY(-60px) scale(1.15);
+            }
+        }
+
+        /* ==============================
+           PARTICLES
+        ============================== */
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -3;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: #67e8f9;
+            animation: particleMove linear infinite;
+        }
+
+        @keyframes particleMove {
+            from {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: .7;
+            }
+
+            80% {
+                opacity: .7;
+            }
+
+            to {
+                transform: translateY(-20vh);
+                opacity: 0;
+            }
+        }
+
+        /* ==============================
+           NAVBAR
+        ============================== */
+
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: min(1100px, 92%);
+
+            padding: 15px 22px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(2, 6, 23, .75);
+            backdrop-filter: blur(20px);
+
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 20px;
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #67e8f9;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons button {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 8px 12px;
+            transition: .3s;
+        }
+
+        .nav-buttons button:hover {
+            color: #67e8f9;
+        }
+
+        /* ==============================
+           SEMUA HALAMAN
+        ============================== */
+
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+            animation: pageIn .5s ease;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==============================
+           HOME
+        ============================== */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 130px 20px 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            padding: 10px 18px;
+
+            border: 1px solid rgba(103,232,249,.35);
+            border-radius: 50px;
+
+            color: #67e8f9;
+
+            font-size: 11px;
+            letter-spacing: 3px;
+
+            margin-bottom: 25px;
+
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                box-shadow: 0 0 30px rgba(103,232,249,.2);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(60px, 12vw, 145px);
+
+            line-height: .85;
+
+            letter-spacing: -8px;
+
+            font-weight: 900;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #67e8f9,
+                #818cf8,
+                #ffffff
+            );
+
+            background-size: 300%;
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+
+            animation: gradientText 6s linear infinite;
+        }
+
+        @keyframes gradientText {
+            to {
+                background-position: 300%;
+            }
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            margin: 35px auto;
+
+            color: #94a3b8;
+
+            line-height: 1.8;
+
+            font-size: 17px;
+        }
+
+        .primary-button {
+            border: none;
+
+            background: #67e8f9;
+            color: #020617;
+
+            padding: 16px 28px;
+
+            border-radius: 50px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 40px rgba(103,232,249,.25);
+        }
+
+        /* ==============================
+           MEMBER
+        ============================== */
+
+        .members-section {
+            padding: 130px 7%;
+        }
+
+        .section-header {
+            text-align: center;
+
+            max-width: 750px;
+
+            margin: 0 auto 60px;
+        }
+
+        .section-label {
+            color: #67e8f9;
+
+            font-size: 12px;
+
+            letter-spacing: 4px;
+
+            font-weight: bold;
+        }
+
+        .section-header h2 {
+            font-size: clamp(40px, 6vw, 70px);
+
+            margin: 15px 0;
+        }
+
+        .section-header p {
+            color: #94a3b8;
+
+            line-height: 1.8;
+        }
+
+        .member-grid {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+        .member-card {
+            position: relative;
+
+            min-height: 290px;
+
+            padding: 35px;
+
+            border-radius: 28px;
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            background: rgba(255,255,255,.035);
+
+            cursor: pointer;
+
+            overflow: hidden;
+
+            transition: .4s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+
+            border-color: rgba(103,232,249,.45);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.4);
+        }
+
+        .member-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 200px;
+            height: 200px;
+
+            border-radius: 50%;
+
+            background: #67e8f9;
+
+            filter: blur(100px);
+
+            right: -100px;
+            bottom: -100px;
+
+            opacity: .08;
+
+            transition: .4s;
+        }
+
+        .member-card:hover::after {
+            opacity: .3;
+        }
+
+        .member-number {
+            position: absolute;
+
+            top: 20px;
+            right: 25px;
+
+            color: #475569;
+        }
+
+        .member-icon {
+            width: 65px;
+            height: 65px;
+
+            border-radius: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(103,232,249,.08);
+
+            border: 1px solid rgba(103,232,249,.3);
+
+            color: #67e8f9;
+
+            font-size: 25px;
+            font-weight: 900;
+
+            margin-bottom: 35px;
+
+            transition: .4s;
+        }
+
+        .member-card:hover .member-icon {
+            transform: rotate(8deg) scale(1.1);
+        }
+
+        .member-info span {
+            color: #67e8f9;
+
+            font-size: 11px;
+
+            letter-spacing: 3px;
+        }
+
+        .member-info h3 {
+            font-size: 34px;
+
+            margin: 8px 0;
+        }
+
+        .member-info p {
+            color: #94a3b8;
+
+            line-height: 1.7;
+        }
+
+        .arrow {
+            position: absolute;
+
+            right: 30px;
+            bottom: 25px;
+
+            width: 45px;
+            height: 45px;
+
+            border: 1px solid rgba(255,255,255,.15);
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transition: .4s;
+        }
+
+        .member-card:hover .arrow {
+            background: #67e8f9;
+
+            color: #020617;
+
+            transform: rotate(45deg);
+        }
+
+        /* ==============================
+           ABOUT
+        ============================== */
+
+        .about-section {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 130px 7%;
+        }
+
+        .about-box {
+            max-width: 900px;
+
+            text-align: center;
+
+            padding: 60px;
+
+            border-radius: 35px;
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            background: rgba(255,255,255,.035);
+        }
+
+        .about-box h2 {
+            font-size: clamp(40px, 6vw, 65px);
+
+            margin: 20px 0 30px;
+        }
+
+        .about-box p {
+            color: #94a3b8;
+
+            line-height: 2;
+
+            font-size: 17px;
+        }
+
+        /* ==============================
+           PROFILE
+        ============================== */
+
+        .profile-container {
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 150px 7% 100px;
+        }
+
+        .back-button {
+            background: transparent;
+
+            border: none;
+
+            color: #67e8f9;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            margin-bottom: 70px;
+
+            transition: .3s;
+        }
+
+        .back-button:hover {
+            transform: translateX(-8px);
+        }
+
+        .profile-name {
+            font-size: clamp(65px, 12vw, 140px);
+
+            line-height: .9;
+
+            margin: 20px 0;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #67e8f9
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .profile-intro {
+            max-width: 750px;
+
+            color: #94a3b8;
+
+            font-size: 19px;
+
+            line-height: 1.9;
+        }
+
+        .profile-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 22px;
+
+            margin-top: 70px;
+        }
+
+        .profile-box {
+            min-height: 190px;
+
+            padding: 35px;
+
+            border-radius: 25px;
+
+            background: rgba(255,255,255,.04);
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            transition: .4s;
+        }
+
+        .profile-box:hover {
+            transform: translateY(-8px);
+
+            border-color: rgba(103,232,249,.5);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.3);
+        }
+
+        .profile-box h2 {
+            color: #67e8f9;
+
+            margin-bottom: 15px;
+
+            font-size: 20px;
+        }
+
+        .profile-box p {
+            color: #94a3b8;
+
+            line-height: 1.8;
+        }
+
+        .quote {
+            margin-top: 25px;
+
+            padding: 40px;
+
+            border-left: 3px solid #67e8f9;
+
+            border-radius: 0 20px 20px 0;
+
+            background: rgba(103,232,249,.04);
+
+            color: #e2e8f0;
+
+            font-size: 24px;
+
+            line-height: 1.6;
+        }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+
+        footer {
+            padding: 50px 20px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            border-top: 1px solid rgba(255,255,255,.07);
+        }
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                top: 10px;
+            }
+
+            .nav-buttons {
+                gap: 0;
+            }
+
+            .nav-buttons button {
+                font-size: 11px;
+                padding: 6px;
+            }
+
+            .hero h1 {
+                letter-spacing: -5px;
+            }
+
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-box {
+                padding: 35px 25px;
+            }
+
+            .profile-container {
+                padding-top: 120px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background-grid"></div>
+
+    <div class="light light-1"></div>
+    <div class="light light-2"></div>
+    <div class="light light-3"></div>
+
+    <div class="particles" id="particles"></div>
+
+
+    <!-- ==============================
+         NAVBAR
+    ============================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            FOUR<span>MINDS</span>
+        </div>
+
+        <div class="nav-buttons">
+
+            <button onclick="showPage('home')">
+                Home
+            </button>
+
+            <button onclick="showPage('members')">
+                Members
+            </button>
+
+            <button onclick="showPage('about')">
+                About
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==============================
+         HOME
+    ============================== -->
+
+    <section
+        id="home"
+        class="page active"
+    >
+
+        <div class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    WELCOME TO OUR WORLD
+                </div>
+
+                <h1>
+                    FOUR<br>
+                    MINDS
+                </h1>
+
+                <p class="hero-description">
+                    Empat orang. Empat karakter.
+                    Empat pemikiran.
+                    Sebuah ruang untuk mengenal
+                    siapa kami dan apa yang kami pikirkan.
+                </p>
+
+                <button
+                    class="primary-button"
+                    onclick="showPage('members')"
+                >
+                    Kenali Kami →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         MEMBERS
+    ============================== -->
+
+    <section
+        id="members"
+        class="page"
+    >
+
+        <div class="members-section">
+
+            <div class="section-header">
+
+                <div class="section-label">
+                    OUR MEMBERS
+                </div>
+
+                <h2>
+                    Kenali Mereka
+                </h2>
+
+                <p>
+                    Pilih salah satu kartu untuk melihat
+                    halaman pribadi mereka.
+                </p>
+
+            </div>
+
+
+            <div class="member-grid">
+
+
+                <!-- HAKAM -->
+
+                <div
+                    class="member-card"
+                    onclick="showPage('hakam')"
+                >
+
+                    <div class="member-number">
+                        01
+                    </div>
+
+                    <div class="member-icon">
+                        H
+                    </div>
+
+                    <div class="member-info">
+
+                        <span>
+                            MEMBER 01
+                        </span>
+
+                        <h3>
+                            Hakam
+                        </h3>
+
+                        <p>
+                            Pemikir yang percaya bahwa
+                            proses membentuk seseorang
+                            menjadi lebih baik.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <!-- FAHMI -->
+
+                <div
+                    class="member-card"
+                    onclick="showPage('fahmi')"
+                >
+
+                    <div class="member-number">
+                        02
+                    </div>
+
+                    <div class="member-icon">
+                        F
+                    </div>
+
+                    <div class="member-info">
+
+                        <span>
+                            MEMBER 02
+                        </span>
+
+                        <h3>
+                            Fahmi
+                        </h3>
+
+                        <p>
+                            Pribadi yang mengutamakan
+                            kerja sama, ketulusan,
+                            dan persahabatan.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <!-- RAZI -->
+
+                <div
+                    class="member-card"
+                    onclick="showPage('razi')"
+                >
+
+                    <div class="member-number">
+                        03
+                    </div>
+
+                    <div class="member-icon">
+                        R
+                    </div>
+
+                    <div class="member-info">
+
+                        <span>
+                            MEMBER 03
+                        </span>
+
+                        <h3>
+                            Razi
+                        </h3>
+
+                        <p>
+                            Seseorang yang suka melihat
+                            sesuatu dari sudut pandang
+                            yang berbeda.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <!-- FATIH -->
+
+                <div
+                    class="member-card"
+                    onclick="showPage('fatih')"
+                >
+
+                    <div class="member-number">
+                        04
+                    </div>
+
+                    <div class="member-icon">
+                        F
+                    </div>
+
+                    <div class="member-info">
+
+                        <span>
+                            MEMBER 04
+                        </span>
+
+                        <h3>
+                            Fatih
+                        </h3>
+
+                        <p>
+                            Percaya bahwa konsistensi
+                            dan usaha adalah bagian
+                            dari perjalanan.
+                        </p>
+
+                    </div>
+
+                    <div class="arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         ABOUT
+    ============================== -->
+
+    <section
+        id="about"
+        class="page"
+    >
+
+        <div class="about-section">
+
+            <div class="about-box">
+
+                <div class="section-label">
+                    ABOUT FOURMINDS
+                </div>
+
+                <h2>
+                    Lebih dari sekadar nama.
+                </h2>
+
+                <p>
+                    FOURMINDS dibuat sebagai tempat untuk
+                    memperkenalkan empat orang dengan
+                    karakter, pemikiran, dan cara pandang
+                    yang berbeda.
+                </p>
+
+                <br>
+
+                <p>
+                    Hakam, Fahmi, Razi, dan Fatih memiliki
+                    cerita dan nilai masing-masing.
+                    Perbedaan bukan alasan untuk terpisah,
+                    tetapi kesempatan untuk saling belajar.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         HAKAM
+    ============================== -->
+
+    <section
+        id="hakam"
+        class="page"
+    >
+
+        <div class="profile-container">
+
+            <button
+                class="back-button"
+                onclick="showPage('members')"
+            >
+                ← Kembali ke Members
+            </button>
+
+            <div class="section-label">
+                MEMBER 01 / FOURMINDS
+            </div>
+
+            <h1 class="profile-name">
+                HAKAM
+            </h1>
+
+            <p class="profile-intro">
+                Hakam adalah seseorang yang percaya
+                bahwa setiap proses memiliki pelajaran.
+                Berkembang bukan selalu tentang menjadi
+                sempurna, tetapi tentang terus mencoba
+                menjadi lebih baik.
+            </p>
+
+            <div class="profile-grid">
+
+                <div class="profile-box">
+
+                    <h2>
+                        Karakter
+                    </h2>
+
+                    <p>
+                        Tenang, mau belajar, dan menghargai
+                        proses. Kesalahan bukan akhir,
+                        melainkan bagian dari perjalanan.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Pemikiran
+                    </h2>
+
+                    <p>
+                        Setiap orang memiliki perjalanan
+                        masing-masing. Tidak perlu
+                        membandingkan proses diri sendiri
+                        dengan orang lain.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Prinsip
+                    </h2>
+
+                    <p>
+                        Tetap berusaha, menghargai orang
+                        lain, dan tidak mudah menyerah
+                        ketika menghadapi kesulitan.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Nilai
+                    </h2>
+
+                    <p>
+                        Kejujuran, tanggung jawab,
+                        kerja keras, serta menghargai
+                        keluarga dan teman.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="quote">
+                “Tidak harus menjadi yang paling hebat.
+                Yang penting adalah terus berkembang.”
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         FAHMI
+    ============================== -->
+
+    <section
+        id="fahmi"
+        class="page"
+    >
+
+        <div class="profile-container">
+
+            <button
+                class="back-button"
+                onclick="showPage('members')"
+            >
+                ← Kembali ke Members
+            </button>
+
+            <div class="section-label">
+                MEMBER 02 / FOURMINDS
+            </div>
+
+            <h1 class="profile-name">
+                FAHMI
+            </h1>
+
+            <p class="profile-intro">
+                Fahmi adalah pribadi yang menghargai
+                hubungan dengan orang lain. Baginya,
+                kerja sama dan saling menghargai merupakan
+                bagian penting dalam kehidupan.
+            </p>
+
+            <div class="profile-grid">
+
+                <div class="profile-box">
+
+                    <h2>
+                        Karakter
+                    </h2>
+
+                    <p>
+                        Ramah, menghargai orang lain,
+                        dan senang membangun hubungan
+                        yang baik.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Pemikiran
+                    </h2>
+
+                    <p>
+                        Tidak semua hal harus dilakukan
+                        sendirian. Bekerja bersama dapat
+                        membuat sesuatu menjadi lebih
+                        ringan dan bermakna.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Prinsip
+                    </h2>
+
+                    <p>
+                        Saling menghormati, membantu
+                        ketika mampu, dan menjaga
+                        kepercayaan.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Nilai
+                    </h2>
+
+                    <p>
+                        Persahabatan, kerja sama,
+                        ketulusan, dan kepedulian
+                        kepada orang lain.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="quote">
+                “Perjalanan akan terasa lebih bermakna
+                ketika kita tidak berjalan sendirian.”
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         RAZI
+    ============================== -->
+
+    <section
+        id="razi"
+        class="page"
+    >
+
+        <div class="profile-container">
+
+            <button
+                class="back-button"
+                onclick="showPage('members')"
+            >
+                ← Kembali ke Members
+            </button>
+
+            <div class="section-label">
+                MEMBER 03 / FOURMINDS
+            </div>
+
+            <h1 class="profile-name">
+                RAZI
+            </h1>
+
+            <p class="profile-intro">
+                Razi suka melihat sesuatu dari sudut
+                pandang yang berbeda. Baginya, sebuah
+                masalah dapat memiliki lebih dari satu
+                cara untuk dipahami.
+            </p>
+
+            <div class="profile-grid">
+
+                <div class="profile-box">
+
+                    <h2>
+                        Karakter
+                    </h2>
+
+                    <p>
+                        Kritis, ingin tahu, dan senang
+                        mencari cara baru untuk
+                        memahami sesuatu.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Pemikiran
+                    </h2>
+
+                    <p>
+                        Sebelum mengambil kesimpulan,
+                        penting untuk melihat masalah
+                        dari beberapa sudut pandang.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Prinsip
+                    </h2>
+
+                    <p>
+                        Berpikir sebelum bertindak
+                        dan selalu terbuka terhadap
+                        pendapat orang lain.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Nilai
+                    </h2>
+
+                    <p>
+                        Kreativitas, keterbukaan,
+                        rasa ingin tahu, dan keberanian
+                        untuk mencoba.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="quote">
+                “Sudut pandang yang berbeda dapat membuka
+                jalan menuju pemahaman yang baru.”
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         FATIH
+    ============================== -->
+
+    <section
+        id="fatih"
+        class="page"
+    >
+
+        <div class="profile-container">
+
+            <button
+                class="back-button"
+                onclick="showPage('members')"
+            >
+                ← Kembali ke Members
+            </button>
+
+            <div class="section-label">
+                MEMBER 04 / FOURMINDS
+            </div>
+
+            <h1 class="profile-name">
+                FATIH
+            </h1>
+
+            <p class="profile-intro">
+                Fatih percaya bahwa keberhasilan tidak
+                datang dalam satu malam. Konsistensi,
+                usaha, dan kemauan untuk terus mencoba
+                adalah bagian dari proses.
+            </p>
+
+            <div class="profile-grid">
+
+                <div class="profile-box">
+
+                    <h2>
+                        Karakter
+                    </h2>
+
+                    <p>
+                        Tekun, berusaha konsisten,
+                        dan tidak mudah berhenti
+                        ketika menghadapi tantangan.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Pemikiran
+                    </h2>
+
+                    <p>
+                        Hasil yang baik membutuhkan
+                        proses. Hal kecil yang dilakukan
+                        secara konsisten dapat memberikan
+                        perubahan.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Prinsip
+                    </h2>
+
+                    <p>
+                        Tetap berusaha walaupun hasil
+                        belum terlihat dan belajar
+                        dari setiap pengalaman.
+                    </p>
+
+                </div>
+
+                <div class="profile-box">
+
+                    <h2>
+                        Nilai
+                    </h2>
+
+                    <p>
+                        Konsistensi, kerja keras,
+                        tanggung jawab, dan pantang
+                        menyerah.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="quote">
+                “Sedikit demi sedikit tetap merupakan
+                sebuah kemajuan.”
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer>
+
+        <p>
+            © 2026 FOURMINDS
+        </p>
+
+        <p style="margin-top:10px;">
+            Hakam • Fahmi • Razi • Fatih
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        /* ==============================
+           PINDAH HALAMAN
+        ============================== */
+
+        function showPage(pageId) {
+
+            const pages =
+                document.querySelectorAll(".page");
+
+            pages.forEach(function(page) {
+
+                page.classList.remove("active");
+
+            });
+
+            const target =
+                document.getElementById(pageId);
+
+            if (target) {
+
+                target.classList.add("active");
+
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+        /* ==============================
+           PARTICLES
+        ============================== */
+
+        const particleContainer =
+            document.getElementById("particles");
+
+        for (let i = 0; i < 40; i++) {
+
+            const particle =
+                document.createElement("div");
+
+            particle.className = "particle";
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+            particle.style.animationDuration =
+                (5 + Math.random() * 10) + "s";
+
+            particle.style.animationDelay =
+                Math.random() * 8 + "s";
+
+            particleContainer.appendChild(
+                particle
+            );
+        }
+
+
+        /* ==============================
+           KEYBOARD ESC
+        ============================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    showPage("members");
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
